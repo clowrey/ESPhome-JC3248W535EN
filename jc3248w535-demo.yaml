@@ -13,7 +13,7 @@ external_components:
   #- source:  github://Garag/esphome-components
   - source:  github://clowrey/esphome-components
     components: [axs15231]
-    refresh: 0min
+    refresh: 10min
 
 esp32:
   board: esp32-s3-devkitc-1
