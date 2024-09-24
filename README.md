@@ -1,5 +1,5 @@
 # ESPhome-JC3248W535EN
-Example config for ESPhome using the Sunton/Guition JC3248W535EN 320x480 LCD dev board from Shenzhen Jingcai Intelligent Co
+Example config for ESPhome using the Sunton / Guition JC3248W535EN 320x480 LCD dev board from Shenzhen Jingcai Intelligent Co
 
 This is using an external component for the AXS15231B display controller which is a fork of a fork here https://github.com/clowrey/esphome-components
 
