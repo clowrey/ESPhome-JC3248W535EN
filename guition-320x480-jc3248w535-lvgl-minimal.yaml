@@ -1,0 +1,112 @@
+esphome:
+  name: jc3248w535
+  friendly_name: Guition 320x480 JC3248W535 Minimal
+  platformio_options:
+    upload_speed: 921600
+    build_unflags: -Werror=all
+    board_build.flash_mode: dio
+    board_build.f_flash: 80000000L
+    board_build.f_cpu: 240000000L
+
+external_components:
+  #- source: github://buglloc/esphome-components
+  #- source:  github://Garag/esphome-components
+  - source:  github://clowrey/esphome-components
+    components: [axs15231]
+    refresh: 0min
+
+esp32:
+  board: esp32-s3-devkitc-1
+  flash_size: 16MB
+  framework:
+    type: esp-idf
+    sdkconfig_options:
+      CONFIG_ESP32S3_DEFAULT_CPU_FREQ_240: "y"
+      CONFIG_ESP32S3_DATA_CACHE_64KB: "y"
+      CONFIG_ESP32S3_DATA_CACHE_LINE_64B: "y"
+      CONFIG_SPIRAM_FETCH_INSTRUCTIONS: y
+      CONFIG_SPIRAM_RODATA: y
+
+psram:
+  mode: octal
+  speed: 120MHz
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+  encryption:
+    key: ""
+
+ota:
+  - platform: esphome
+    password: ""
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Jc3248W535 Fallback Hotspot"
+    password: ""
+
+captive_portal:
+
+spi:
+  id: display_qspi
+  type: quad
+  clk_pin: 47
+  data_pins: [21, 48, 40, 39]
+
+i2c:
+  sda: 4
+  scl: 8
+  id: touchscreen_bus
+
+display:
+  - platform: axs15231
+    data_rate: 40MHz #20mhz is default
+    id: my_display
+    spi_id: display_qspi
+    dimensions:
+      height: 480
+      width: 320
+    cs_pin: 45
+    backlight_pin: 1
+    brightness: 50
+    transform:
+      swap_xy: false
+    rotation: 90
+    #update_interval: never
+    auto_clear_enabled: false
+    #show_test_card: true # must enable update_interval, auto_clear_enable
+
+touchscreen:
+  - platform: axs15231
+    id: my_touch
+    display: my_display
+    i2c_id: touchscreen_bus
+    transform:
+      swap_xy: true
+    on_touch:
+      - lambda: |-
+          ESP_LOGI("cal", "x=%d, y=%d, x_raw=%d, y_raw=%0d",
+            touch.x,
+            touch.y,
+            touch.x_raw,
+            touch.y_raw
+          );
+
+lvgl:
+  displays:
+    - my_display
+  touchscreens:
+    - my_touch
+  pages:
+    - id: main_page
+      widgets:
+        - label:
+            align: CENTER
+            text: 'Hello World!'
