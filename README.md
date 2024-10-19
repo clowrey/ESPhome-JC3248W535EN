@@ -1,9 +1,9 @@
 # ESPhome-JC3248W535EN
 
 
+### Use the guition-320x480-jc3248w535-native-qspi_dbi.yaml file ;) 
 
-
-##------------- The below code is now only used for the touch driver - the display is now supported natively -------------
+## -The below code is now only used for the touch driver - the display is now supported natively -
 
 Example config for ESPhome using the Sunton / Guition JC3248W535EN 320x480 LCD dev board from Shenzhen Jingcai Intelligent Co
 
