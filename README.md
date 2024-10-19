@@ -3,7 +3,7 @@
 
 
 
-------------- The below code is now only used for the touch driver - the display is now supported natively ----------------
+##------------- The below code is now only used for the touch driver - the display is now supported natively -------------
 
 Example config for ESPhome using the Sunton / Guition JC3248W535EN 320x480 LCD dev board from Shenzhen Jingcai Intelligent Co
 
