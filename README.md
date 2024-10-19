@@ -2,6 +2,7 @@
 
 
 ### Use the guition-320x480-jc3248w535-native-qspi_dbi.yaml file ;) 
+as of 10/18/2024 you need the DEV version of ESPhome to compile it. 
 
 ## -The below code is now only used for the touch driver - the display is now supported natively -
 
