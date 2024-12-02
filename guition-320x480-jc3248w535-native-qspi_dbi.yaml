@@ -83,6 +83,7 @@ touchscreen:
     i2c_id: touchscreen_bus
     transform:
       swap_xy: true
+      mirror_y: true
     on_touch:
       - lambda: |-
           ESP_LOGI("cal", "x=%d, y=%d, x_raw=%d, y_raw=%0d",
